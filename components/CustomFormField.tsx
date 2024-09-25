@@ -19,6 +19,7 @@ import { Control } from "react-hook-form";
 import { FormFieldType } from "./forms/PatientForm";
 
 interface CustomProps {
+  fieldType: FormFieldType;
   control: Control<any>;
   name: string;
   label?: string;
@@ -30,7 +31,6 @@ interface CustomProps {
   showTimeSelect?: boolean;
   children?: React.ReactNode;
   renderSkeleton?: (field: any) => React.ReactNode;
-  fieldType: FormFieldType;
 }
 
 const RenderField = ({field, props}: {field:any, props:CustomProps}) => {
@@ -72,19 +72,12 @@ const RenderField = ({field, props}: {field:any, props:CustomProps}) => {
                 className="input-phone"
               />
             </FormControl>
-          );
-        
-            
-            
+          );       
     
         default:
             break;
     }
-        
-}
-
-
-  
+}  
 
 const CustomFormField = (props: CustomProps) => {
   const { control, fieldType, name, label } = props;
@@ -98,9 +91,7 @@ const CustomFormField = (props: CustomProps) => {
             {fieldType !== FormFieldType.CHECKBOX && label &&(
                 <FormLabel>{label}</FormLabel>
             )}
-
             <RenderField field={field} props = {props}/>
-            
             <FormMessage className="shad-error" />
           </FormItem>
         )}
